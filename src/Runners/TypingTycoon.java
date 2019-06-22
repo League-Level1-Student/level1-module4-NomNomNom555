@@ -7,9 +7,11 @@ import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class TypingTycoon implements KeyListener{
 JFrame frame= new JFrame("Typing Tycoon!");
+JPanel panel= new JPanel();
 JLabel label= new JLabel();
 
 char currentLetter;
@@ -18,11 +20,13 @@ currentLetter = generateRandomLetter();
 label.setText(""+ currentLetter);
 label.setFont(label.getFont().deriveFont(28.0f));
 label.setHorizontalAlignment(JLabel.CENTER);
+frame.add(panel);
 frame.addKeyListener(this);
-frame.add(label);
+panel.add(label);
 frame.setVisible(true);
 frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-frame.pack();
+frame.setSize(100,100);
+
 }
 char generateRandomLetter() {
       Random r = new Random();
@@ -43,12 +47,14 @@ public void keyPressed(KeyEvent e) {
 	System.out.println("You typed the letter " +e.getKeyChar());
 	if(e.getKeyChar()==currentLetter) {
 		System.out.println("You typed the correct letter!");
-		frame.setBackground(Color.GREEN);
-		frame.pack();
+		panel.setBackground(Color.GREEN);
+		
+		
+		
 	}
 	else {
-		frame.setBackground(Color.RED);
-		frame.pack();
+		panel.setBackground(Color.red);
+		
 	}
 }
 @Override
