@@ -1,7 +1,11 @@
 package Runners;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -21,6 +25,7 @@ public class NastySurpriseRunner implements ActionListener{
 public static void main(String[] args) {
 	 new NastySurpriseRunner().createUI();
 }
+
 void createUI(){
 	frame.add(panel);
 	panel.add(button1);
@@ -34,6 +39,7 @@ private void showPictureFromTheInternet(String imageUrl) {
     try {
          URL url = new URL(imageUrl);
          Icon icon = new ImageIcon(url);
+         
          JLabel imageLabel = new JLabel(icon);
          JFrame frame = new JFrame();
          frame.add(imageLabel);
@@ -52,6 +58,17 @@ public void actionPerformed(ActionEvent e) {
 		showPictureFromTheInternet("https://thumbs.gfycat.com/SelfassuredWholeJavalina-size_restricted.gif");
 	}
 	}
+private Image getScaledImage(Image srcImg, int w, int h){
+    BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+    Graphics2D g2 = resizedImg.createGraphics();
+
+    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+    g2.drawImage(srcImg, 0, 0, w, h, null);
+    g2.dispose();
+
+    return resizedImg;
+    getScaledImage((Image)icon, 1400,1000);
+}
 }
 
 
