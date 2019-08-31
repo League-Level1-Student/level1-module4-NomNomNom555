@@ -16,12 +16,16 @@ public class IWhackMoles implements ActionListener {
 	JPanel panel = new JPanel();
 	JButton mole = new JButton("MOLE");
 	static int buttonPressed = 0;
+	static int buttonMissed= 0;
 	static Date timeAtStart= new Date();
 
 	public static void main(String[] args) {
 		Random sandy = new Random();
 		new IWhackMoles().drawbuttons(sandy.nextInt(23));
-		;
+		if(buttonMissed==5) {
+			JOptionPane.showMessageDialog(null, "You have lost!");
+			System.exit(0);
+		}
 	}
 void drawbuttons(int location){
 	frame.add(panel);
@@ -65,11 +69,12 @@ public void actionPerformed(ActionEvent e) {
 		System.out.println(buttonPressed);
 		if(buttonPressed==10) {
 			endGame(timeAtStart,0);
-			 System.exit(0);
+			System.exit(0);
 		}
 	}
 	else {
 		speak("Missed!");
+		buttonMissed++;
 	}
 }
 }
