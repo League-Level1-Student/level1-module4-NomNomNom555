@@ -24,7 +24,7 @@ public class SimonSays extends KeyAdapter {
 
 	HashMap<Integer, String> images = new HashMap<Integer, String>();
 	private int imageIndex;
-	private int tries = 0;
+	private int tries = 0, points=0;
 	private boolean simonSays = false;
 	Date timeAtStart;
 
@@ -35,43 +35,61 @@ public class SimonSays extends KeyAdapter {
 		// 2. Add the four images that match keyboard keys like this:
 		// images.put(new Integer(KeyEvent.VK_UP), "up.jpg");
 		 images.put(new Integer(KeyEvent.VK_UP), "up.jpg");
-		 images.put(new Integer(KeyEvent.VK_UP), "down.jpg"); 
-		images.put(new Integer(KeyEvent.VK_UP), "left.jpg");
-		images.put(new Integer(KeyEvent.VK_UP), "right.jpg");
+		 images.put(new Integer(KeyEvent.VK_DOWN), "down.jpg"); 
+		images.put(new Integer(KeyEvent.VK_LEFT), "left.jpg");
+		images.put(new Integer(KeyEvent.VK_RIGHT), "right.jpg");
 
 		/* 3. Use a JOptionPane to tell the user the rules: "Press the matching
 		 key when
 		 'Simon says' otherwise press a different key"*/
 		
-		JOptionPane.showMessageDialog(null, "Here are the rules: Press the matching key when// 'Simon says' otherwise press a different key");
+		JOptionPane.showMessageDialog(null, "Here are the rules: Press the matching key when 'Simon says' otherwise press a different key");
 
 		// 4. Call the showImage method to show an image
 			showImage();
 	}
 
 	public void keyPressed(KeyEvent e) {
+		if(tries>9) {
+			JOptionPane.showMessageDialog(null,"Your score is "+ points + ".");
+			System.exit(0);
 		// 15. Make a points variable to track the score.
-
+		
 		// 16. If the keyCode matches the imageIndex and "Simon says"
-
 		// 17. Increase the value of score
-
 		// 18. Use the speak method to tell the user they were correct
+		if(e.getKeyCode()==imageIndex && simonSays) {
+			 points++;
+			speak("You are correct!");
 
+		}
 		// 19. If the keyCode doesn't match the imageIndex and "Simon didn't
-		// say..."
+				// say..."
 
-		// 20. Increase the value of score
+				// 20. Increase the value of score
 
-		// 21. Use the speak method to tell the user they were correct
-
+				// 21. Use the speak method to tell the user they were correct
 		// 22. Increment tries by 1
-
+		 if(e.getKeyCode()!= imageIndex&& !simonSays) {
+			 points++;
+				speak("You are correct!");
+				
+		}
 		// 25. If tries is greater than 9 (or however many you want)...
 
-		// 26. Tell the user their score
+				// 26. Tell the user their score
 
-		// 27. Exit the program
+				// 27. Exit the program
+		
+			
+		}
+		tries++;
+		System.out.println(tries);
+		frame.dispose();
+		showImage();
+		
+
+		
 
 		// 23. Dispose of the frame
 
@@ -105,11 +123,13 @@ public class SimonSays extends KeyAdapter {
 		// 13. Use the Random and the speak method to either say
 		// "Simon says press this key" or "Press this key"
 		 simonSays=randy.nextBoolean();
-		 if(simonSays) {
+		 if(randy.nextBoolean()) {
 		 speak("Simon says press this key.");
+		 simonSays= true;
 		 }
 		 else {
 		 speak("Press this key.");
+		 simonSays= false;
 		 }
 		// 14. Above, set the value of simonSays to true/false appropriately
 		
