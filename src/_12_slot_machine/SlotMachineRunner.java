@@ -1,4 +1,4 @@
-package Runners;
+package _12_slot_machine;
 
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -53,33 +53,77 @@ public class SlotMachineRunner implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		panel.removeAll();
 		Random randy = new  Random();
 		int choose = randy.nextInt(3);
 		int getIt = randy.nextInt(3);
 		int grabIt= randy.nextInt(3);
 		try {
 			
+			if(grabIt==0) {
+				panel.add(createLabelImage("Dapper Cat.jpg"));
+			}
+			
 			if(getIt ==0) {
 				panel.add(createLabelImage("Dapper Cat.jpg"));
 			}
 			
 		if(choose == 0 ) {
-			panel.add(createLabelImage("Dapper Cat.jpg"));
-		
+			panel.add(createLabelImage("Dapper Cat.jpg"));	
 		}
+		
+		if(choose== getIt && choose== grabIt) {
+			
+		}
+		
 		if(choose==1) {
 		panel.add(createLabelImage("Ice Nap.jpg"));
+		
 		}
+		
+		if(getIt==1) {
+			panel.add(createLabelImage("Ice Nap.jpg"));
+		}
+		
+		if(grabIt==1) {
+			panel.add(createLabelImage("Ice Nap.jpg"));
+		}
+		
 		 if(choose==2) {
 			 panel.add(createLabelImage("Pineapple Terror.jpg"));
 		 }
 		
+		if(getIt==2) {
+			panel.add(createLabelImage("Pineapple Terror.jpg"));
+		}
+		
+		if(grabIt==2) {
+			panel.add(createLabelImage("Pineapple Terror.jpg"));
+		}
 		
 		
+		
+		if(choose== 0 && getIt== 0 && grabIt==0) {
+			panel.removeAll();
+			panel.add(createLabelImage("Ascended Cat.jpg"));
+		}
+		
+		if(choose== 1 && getIt==1 && grabIt==1) {
+			panel.removeAll();
+			panel.add(createLabelImage("Advanced Ice.jpg"));
+		}
+		
+		if(choose== 2 && getIt==2 && grabIt==2) {
+			panel.removeAll();
+			panel.add(createLabelImage("Polished.jpg"));
+		}
 		
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		
+		frame.pack();
 	}
 }
