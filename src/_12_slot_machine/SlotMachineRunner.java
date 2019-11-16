@@ -110,7 +110,7 @@ public class SlotMachineRunner implements ActionListener {
 		
 		if(choose== 1 && getIt==1 && grabIt==1) {
 			panel.removeAll();
-			panel.add(createLabelImage("Advanced Ice.jpg"));
+			panel.add(createLabelImage("FROZONE.png"));
 		}
 		
 		if(choose== 2 && getIt==2 && grabIt==2) {
