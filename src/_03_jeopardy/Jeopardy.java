@@ -34,7 +34,7 @@ import javax.swing.JPanel;
 public class Jeopardy implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
-	private JButton thirdButton, fourthButton;
+	private JButton thirdButton, fourthButton, fifthButton;
 	private JPanel quizPanel;
 	private int score = 0;
 	private JLabel scoreBox = new JLabel("0");
@@ -66,7 +66,7 @@ public class Jeopardy implements ActionListener {
 		// 5. Add the quizPanel to the frame
 		frame.add(quizPanel);
 		// 6. Use the createButton method to set the value of firstButton
-		createButton("200");
+		firstButton=createButton("200");
 
 		// 7. Add the firstButton to the quizPanel
 		quizPanel.add(firstButton);
@@ -85,10 +85,19 @@ public class Jeopardy implements ActionListener {
 		firstButton.addActionListener(this);
 		secondButton.addActionListener(this);
 		// 12. Write the code to complete the actionPerformed() method below
-			
+						
 
 		// 13. Add buttons so that you have $200, $400, $600, $800 and $1000 questions
-		
+		thirdButton=createButton("600");
+		quizPanel.add(thirdButton);
+		thirdButton.addActionListener(this);
+		fourthButton=createButton("800");
+		quizPanel.add(fourthButton);
+		fourthButton.addActionListener(this);
+		fifthButton=createButton("1000");
+		quizPanel.add(fifthButton);
+		fifthButton.addActionListener(this);
+
 		 /*
 		 * [optional] Use the showImage or playSound methods when the user answers a
 		 * question
@@ -124,18 +133,34 @@ public class Jeopardy implements ActionListener {
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
 		if(buttonPressed.equals(firstButton)) {
-			askQuestion();
+			askQuestion("The capital of California.", "What is Sacremento?", 200);
+			firstButton.setText(" "); //remove text
+			
 		}
 			// Call the askQuestion() method
  
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
 
 		// If the buttonPressed was the secondButton
-
+		if(buttonPressed.equals(secondButton)) {
+			askQuestion("The world's largest desert.", "What is Antartica?", 400);
+			secondButton.setText(" "); //remove text
+		}
 			// Call the askQuestion() method with a harder question
 
 		// Clear the text on the button that was pressed (set the button text to nothing)
-
+		if(buttonPressed.equals(thirdButton)){
+			askQuestion("The small part of a shoelace.", "What is an aglet?" ,600);
+			thirdButton.setText(" ");
+		}
+		if(buttonPressed.equals(fourthButton));{
+			askQuestion("The smallest bone in the human body.", "What is the stapes?", 800);
+			fourthButton.setText(" ");
+		}
+		if(buttonPressed.equals(fifthButton))	{
+			askQuestion("Jayne Mansfield's IQ score." ,"What is 163?" , 1000);
+			fifthButton.setText(" ");
+		}
 	}
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
